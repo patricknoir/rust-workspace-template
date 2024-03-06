@@ -13,17 +13,24 @@ function publish_image() {
   docker buildx build --push --platform linux/arm64 -t "patricknoir/{{project-name}}-$1:$2" -f "$1/Dockerfile" .
 }
 
-while getopts "a:p:" opt; do
+while getopts "a:p:v:" opt; do
   case $opt in
     a)
       echo "Add Project: $OPTARG" >&2
       add_project $OPTARG
       ;;
     p)
-      echo "Publish Image: $OPTARG" >&2
-      publish_image $OPTARG
+      image=$OPTARG
+      ;;
+    v)
+      version=$OPTARG
       ;;
   esac
 done
+
+if [ -n "$image" ]; then
+  echo "Publishing image $image"
+  publish_image "$image" "$version"
+fi
 
 
