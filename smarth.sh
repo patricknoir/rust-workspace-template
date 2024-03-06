@@ -10,7 +10,7 @@ function add_project() {
 
 function publish_image() {
   echo "Creating image $1"
-  docker buildx build --push --platform linux/arm64 -t "patricknoir/{{project-name}}-$1:$2" -f "$1/Dockerfile" .
+  docker buildx build --push --platform linux/arm64 -t "patricknoir/$1:$2" -f "$1/Dockerfile" .
 }
 
 while getopts "a:p:v:" opt; do
