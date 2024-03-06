@@ -2,9 +2,9 @@
 
 function add_project() {
   echo "Creating project $1"
-  cargo ws create "$1"
+  cargo ws create --bin --name "$1"
   rm -rf "$1"
-  cargo generate --git  http://github.com/patricknoir/rust-bin-module-template --name "$1"
+  cargo generate --git http://github.com/patricknoir/rust-bin-module-template --name "$1"
   copy "$1/k8s/templates/* k8s/helm/templates"
 }
 
