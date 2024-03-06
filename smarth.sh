@@ -13,13 +13,13 @@ function publish_image() {
   docker buildx build --push --platform linux/arm64 -t "patricknoir/{{project-name}}-$1:$2" -f "$1/Dockerfile" .
 }
 
-getopts "add:publish:" opt; do
+while getopts "a:p:" opt; do
   case $opt in
-    add)
+    a)
       echo "Add Project: $OPTARG" >&2
       add_project $OPTARG
       ;;
-    publish)
+    p)
       echo "Publish Image: $OPTARG" >&2
       publish_image $OPTARG
       ;;
