@@ -5,7 +5,7 @@ function add_project() {
   cargo ws create --bin --edition 2021 --name "$1" "$1"
   rm -rf "$1"
   cargo generate --git http://github.com/patricknoir/rust-bin-module-template --name "$1"
-  cp "$1/templates/*" "k8s/helm/templates"
+  cp "$1/templates/k8s/*" "k8s/helm/templates"
 }
 
 function publish_image() {
