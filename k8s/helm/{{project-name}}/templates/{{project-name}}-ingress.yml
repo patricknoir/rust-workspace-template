@@ -8,3 +8,10 @@ spec:
   rules:
     - http:
         paths:
+          - path: /apimodule(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: apimodule-service
+                port:
+                  number: 9080
